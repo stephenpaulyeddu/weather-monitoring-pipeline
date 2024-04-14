@@ -66,4 +66,4 @@ while True:
         filtered_api_data = filter_open_weather_api_data(api_data)
         # print(api_data)
         produce_to_kafka(data = filtered_api_data,topic = topic,kafka_servers = kafka_servers)
-    break
+    # break
