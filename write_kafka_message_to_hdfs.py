@@ -66,12 +66,15 @@ get_timezone_udf = udf(get_timezone_from_unix, StringType())
 df_parsed = df_parsed.withColumn("timezone", get_timezone_udf("timezone"))
 
 
+HDFS_PATH = 'hdfs://path/to/folder'
+CHECKPOINT_LOCATION = 'path/to/checkpoint_location'
+
 # Write the parsed data to HDFS
 query = df_parsed \
     .writeStream \
     .format("parquet") \
-    .option("path", "hdfs://127.0.0.1:9000/user/test") \
-    .option("checkpointLocation", "/Users/Stephen/Documents/Projects_1/abc/weather-monitoring/weather_data_checkpoint") \
+    .option("path", HDFS_PATH) \
+    .option("checkpointLocation",CHECKPOINT_LOCATION) \
     .start()
 
 # # Wait for the stream to finish
